@@ -78,21 +78,21 @@
             }
         }
         // Mark a specific task as completed in the sidebar
-        function completeTask(hash) {
-            if (hash.length > 1) {
-                $(options.sidebar,$el).children("li a[href='" + hash + "']")
-                    .parent("li").removeClass(options.todoClass)
-                    .addClass(options.completedClass);
-            }
-        }
+        //function completeTask(hash) {
+        //    if (hash.length > 1) {
+        //        $(options.sidebar,$el).children("li a[href='" + hash + "']")
+        //            .parent("li").removeClass(options.todoClass)
+        //            .addClass(options.completedClass);
+        //    }
+        //}
         // Mark a specific task as not complete in the sidebar
-        function uncompleteTask(hash) {
-            if (hash.length > 1) {
-                $(options.sidebar,$el).children("li a[href='" + hash + "']")
-                    .parent("li").removeClass(options.completedClass)
-                    .addClass(options.todoClass);
-            }
-        }
+        //function uncompleteTask(hash) {
+        //    if (hash.length > 1) {
+        //        $(options.sidebar,$el).children("li a[href='" + hash + "']")
+        //            .parent("li").removeClass(options.completedClass)
+        //            .addClass(options.todoClass);
+        //    }
+        //}
 
         // Initialize plugin.
         function init() {
@@ -140,14 +140,14 @@
             
                 // We deliberately skip the last form element because
                 // that should be the confirm button for the whole page
-                for (ix=0; ix<last; ix++) {
+                for (var ix=0; ix<last; ix++) {
                     if (ix === 0) {
                         $(forms[0]).append(nextOnly);
                     } else {
                         $(forms[ix]).append(nextBack);
                     }
                 }
-            };
+            }
 
             // Now that our HTML is updated for javascript, let's
             // tackle the window hash. Research indicates that users
@@ -184,18 +184,18 @@
             // already visible, and we toggle the visibility or not as
             // appropriate.
             $(".collapse",$el).each(function () {
-            	if (("#"+this.id) === currentHash) {
-            	    if ($(this).hasClass("in")) {
-                        $(this).collapse({parent: parent, toggle: false});  	
-            	    } else {
+                if (("#"+this.id) === currentHash) {
+                    if ($(this).hasClass("in")) {
+                        $(this).collapse({parent: parent, toggle: false});
+                    } else {
                         $(this).collapse({parent: parent, toggle: true});
-            	    }
-            	} else if ($(this).hasClass("in")) {
-                    $(this).collapse({parent: parent, toggle: true});  	
-            	} else {
+                    }
+                } else if ($(this).hasClass("in")) {
+                    $(this).collapse({parent: parent, toggle: true});
+                } else {
                     $(this).collapse({parent: parent, toggle: false});
-            	}
-            }
+                }
+            });
 
             // And mark the current panel as active in the task list
             makeTaskActive(currentHash);
@@ -203,7 +203,7 @@
             // Next up are the events we need to hook. To continue
             // with the hash theme, here's our hook for hash
             // changes.
-            $(window).bind('hashchange', function(ev) {
+            $(window).bind('hashchange', function() {
                 if (currentHash !== window.location.hash) {
                     currentHash = window.location.hash;
                     $(".accordion-body" + currentHash,$el).collapse("show");
@@ -229,7 +229,6 @@
                     .click(function(ev) {
                         ev.preventDefault();
                         var panel = $(this).parents(".accordion-body")[0];
-                        var done = "#" + panel.id;
                         var next = "#" + $(".accordion-body",
                                $(panel).parents(".accordion-group")
                                .next(".accordion-group")[0])[0].id;
@@ -245,7 +244,6 @@
                     .click(function(ev) {
                         ev.preventDefault();
                         var panel = $(this).parents(".accordion-body")[0];
-                        var cur = "#" + panel.id;
                         var prev = "#" + $(".accordion-body",
                                        $(panel).parents(".accordion-group")
                                        .prev(".accordion-group")[0])[0].id;
@@ -298,7 +296,7 @@
             option: option,
             destroy: destroy
         };
-    };
+    }
 
     // Build the plugin here
 
@@ -354,8 +352,8 @@
         addButtons:     true,                   // add next/prev buttons to panels
         sidebar:        ".acc-wizard-sidebar",  // selector for task sidebar
         activeClass:    "acc-wizard-active",    // class to indicate the active task in sidebar
-        completedClass: "acc-wizard-completed", // class to indicate task is complete
-        todoClass:      "acc-wizard-todo",      // class to indicate task is still pending
+        //completedClass: "acc-wizard-completed", // class to indicate task is complete
+        //todoClass:      "acc-wizard-todo",      // class to indicate task is still pending
         stepClass:      "acc-wizard-step",      // class for step buttons within panels
         nextText:       "Next Step",            // text for next button
         backText:       "Go Back",              // text for back button
