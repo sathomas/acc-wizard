@@ -48,9 +48,9 @@
     //     actions are taken (such as gaining access to the global object).
     //  *  It disables features that are confusing or poorly thought out.
 
-    "use strict";
+//    "use strict";
 
-    var pluginName = 'acc-wizard';
+    var pluginName = 'accwizard';
 
     // The plug-in itself is implemented as an object. Here's the
     // constructor function
@@ -67,19 +67,21 @@
 
         // Make a specific task active in the sidebar
         function makeTaskActive(hash) {
-            if (hash.length > 1) {
+            if (hash && hash.length > 1) {
                 // Add class to appropriate task
-                $(options.sidebar,$el).children("li a[href='" + hash + "']")
+                $(options.sidebar,$el).children("li")
+                    .children("a[href='" + hash + "']")
                     .parent("li").addClass(options.activeClass);
     
                 // Remove class from other tasks
-                $(options.sidebar,$el).children("li a[href!='" + hash + "']")
+                $(options.sidebar,$el).children("li")
+                    .children("a[href!='" + hash + "']")
                     .parent("li").removeClass(options.activeClass);
             }
         }
         // Mark a specific task as completed in the sidebar
         //function completeTask(hash) {
-        //    if (hash.length > 1) {
+        //    if (hash && hash.length > 1) {
         //        $(options.sidebar,$el).children("li a[href='" + hash + "']")
         //            .parent("li").removeClass(options.todoClass)
         //            .addClass(options.completedClass);
@@ -87,7 +89,7 @@
         //}
         // Mark a specific task as not complete in the sidebar
         //function uncompleteTask(hash) {
-        //    if (hash.length > 1) {
+        //    if (hash && hash.length > 1) {
         //        $(options.sidebar,$el).children("li a[href='" + hash + "']")
         //            .parent("li").removeClass(options.completedClass)
         //            .addClass(options.todoClass);
@@ -144,7 +146,7 @@
                     if (ix === 0) {
                         $(forms[0]).append(nextOnly);
                     } else {
-                        $(forms[ix]).append(nextBack);
+                        $(forms[ix]).append($(nextBack).clone());
                     }
                 }
             }
@@ -166,10 +168,11 @@
 
             currentHash = window.location.hash ||
                           $(options.sidebar,$el)
-                              .children("li."+options.todoClass+":first a")
-                              .attr("href") ||
+                              .children("li."+options.todoClass+":first")
+                              .children("a").attr("href") ||
                           $(options.sidebar,$el)
-                              .children("li:first a").attr("href");
+                              .children("li:first")
+                              .children("a").attr("href");
 
             // Sync up the window hash with our calculated value
             window.location.hash = currentHash;
@@ -224,7 +227,7 @@
             if (options.addButtons) {
                 // When the user clicks the "Next" button in
                 // any panel, advance to the next panel.
-                $(options.stepClass,$el)
+                $("."+options.stepClass,$el)
                     .children("button[type='"+options.nextType+"']")
                     .click(function(ev) {
                         ev.preventDefault();
@@ -233,13 +236,13 @@
                                $(panel).parents(".accordion-group")
                                .next(".accordion-group")[0])[0].id;
                         $(next).collapse("show");
-                        hook('onNext');
+                        hook('onNext', panel);
                     });
             
                 // When the user clicks the "Back" button in
                 // any panel, retrurn to the previous panel.
             
-                $(options.stepClass,$el)
+                $("."+options.stepClass,$el)
                     .children("button[type='"+options.backType+"']")
                     .click(function(ev) {
                         ev.preventDefault();
@@ -248,7 +251,7 @@
                                        $(panel).parents(".accordion-group")
                                        .prev(".accordion-group")[0])[0].id;
                         $(prev).collapse("show");
-                        hook('onPrev');
+                        hook('onPrev', panel);
                     });
             }
 
@@ -284,7 +287,9 @@
             if (options[hookName] !== undefined) {
                 // Call the user defined function.
                 // Scope is set to the jQuery element we are operating on.
-                options[hookName].call(el);
+                var fn = options[hookName];
+                arguments[0] = el;
+                fn.apply(this, arguments);
             }
         }
 
@@ -352,8 +357,8 @@
         addButtons:     true,                   // add next/prev buttons to panels
         sidebar:        ".acc-wizard-sidebar",  // selector for task sidebar
         activeClass:    "acc-wizard-active",    // class to indicate the active task in sidebar
-        //completedClass: "acc-wizard-completed", // class to indicate task is complete
-        //todoClass:      "acc-wizard-todo",      // class to indicate task is still pending
+        completedClass: "acc-wizard-completed", // class to indicate task is complete
+        todoClass:      "acc-wizard-todo",      // class to indicate task is still pending
         stepClass:      "acc-wizard-step",      // class for step buttons within panels
         nextText:       "Next Step",            // text for next button
         backText:       "Go Back",              // text for back button

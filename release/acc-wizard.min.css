@@ -4,9 +4,10 @@ ol.acc-wizard-sidebar li a{color:#333333;}
 ol.acc-wizard-sidebar li:before{background:#333333;}
 ol.acc-wizard-sidebar li.acc-wizard-completed{color:#999999;}ol.acc-wizard-sidebar li.acc-wizard-completed a{color:#999999;}
 ol.acc-wizard-sidebar li.acc-wizard-completed:before{background:#999999;}
-ol.acc-wizard-sidebar li.acc-wizard-completed:after{display:inline-block;vertical-align:middle;font-size:1.3333333333333333em;width:1.875em;content:"\2713";}
+ol.acc-wizard-sidebar li.acc-wizard-completed:after{display:inline-block;vertical-align:middle;font-size:1.3333333333333333em;width:1.875em;content:"\00a0\2713";position:relative;bottom:0.1em;}
 ol.acc-wizard-sidebar li.acc-wizard-active{color:#0088cc;}ol.acc-wizard-sidebar li.acc-wizard-active a{color:#0088cc;}
 ol.acc-wizard-sidebar li.acc-wizard-active:before{background:#0088cc;}
 ol.acc-wizard-sidebar li:first-child{margin-top:0.75em;}
-.acc-wizard-step{margin-top:20px;}
-.acc-wizard.accordion-heading{background:#eee;}
+.acc-wizard-step{margin-top:2em;}
+.accordion-heading{height:2.6em;position:relative;z-index:1;}
+.accordion-body{padding-top:2.6em;margin-top:-2.6em;}
