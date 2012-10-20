@@ -3,11 +3,21 @@
  * Original author: @stephen_thomas
  * Licensed under the MIT license
  */
+ 
+// Variables we'd normally get from Bootstrap via the
+// variables.less file. They're replicated here for
+// convenient builds, but you'll probably want to delete
+// these definitions and importe variables.less
+
+@linkColor:             #08c;
+@textColor:             #333;
+@grayLight:             #999;
+
 
 // Most of this style sheet creates the (slightly) fancy
 // numbers on the tasks in the sidebar. We definitely want
 // something a little nicer than the standard browser
-// ordered list styling. To do that, but retain the 
+// ordered list styling. To do that, but retain the
 // incrementing numbers, we use the CSS counter function.
 
 ol.acc-wizard-sidebar {
