@@ -120,18 +120,20 @@
         
         # Grab all the <form> elements in the accordion stack
         # and count them.
-        forms = $(".accordion-body .accordion-inner form", $el)
-        last = forms.length - 1
-        
+        accordion_steps = $(".accordion-body .accordion-inner form", $el)
+        # if no forms in .accordion-inner, a single form may wrap all accordion steps
+        accordion_steps = $(".accordion-body .accordion-inner", $el) if accordion_steps.length == 0
+
+        last = accordion_steps.length - 1
         # We deliberately skip the last form element because
         # that should be the confirm button for the whole page
         ix = 0
 
         while ix < last
           if ix is 0
-            $(forms[0]).append nextOnly
+            $(accordion_steps[0]).append nextOnly
           else
-            $(forms[ix]).append $(nextBack).clone()
+            $(accordion_steps[ix]).append $(nextBack).clone()
           ix++
       
       # Now that our HTML is updated for javascript, let's
