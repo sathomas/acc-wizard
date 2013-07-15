@@ -207,26 +207,34 @@
       if options.addButtons
         # When the user clicks the "Next" button in
         # any panel, advance to the next panel.
-        $("." + options.stepClass, $el).children("button[type='" + options.nextType + "']").click (ev) ->
-          ev.preventDefault()
-          panel = $(this).parents(".accordion-body")[0]
-          next = "#" + $(".accordion-body", $(panel).parents(".accordion-group").next(".accordion-group")[0])[0].id
-          $(next).collapse "show"
-          hook "onNext", panel
+        $("." + options.stepClass, $el).children("button[type='" + options.nextType + "']").click go_next
 
         # When the user clicks the "Back" button in
         # any panel, retrurn to the previous panel.
-        $("." + options.stepClass, $el).children("button[type='" + options.backType + "']").click (ev) ->
-          ev.preventDefault()
-          panel = $(this).parents(".accordion-body")[0]
-          prev = "#" + $(".accordion-body", $(panel).parents(".accordion-group").prev(".accordion-group")[0])[0].id
-          $(prev).collapse "show"
-          hook "onPrev", panel
+        $("." + options.stepClass, $el).children("button[type='" + options.backType + "']").click go_prev
       
       # Finally, if any caller has hooked our initialization,
       # accommodate it.
       hook "onInit"
-    
+
+    # Go to next step, exposed as public
+    # Can be retrived by e.g. $(".acc-wizard").data('plugin_accwizard').go_next
+    go_next = (ev)->
+      ev.preventDefault()
+      panel = $(this).parents(".accordion-body")[0]
+      next = "#" + $(".accordion-body", $(panel).parents(".accordion-group").next(".accordion-group")[0])[0].id
+      $(next).collapse "show"
+      hook "onNext", panel
+
+    # Go back to previous step, exposed as public
+    # Can be retrived by e.g. $(".acc-wizard").data('plugin_accwizard').go_prev
+    go_prev = (ev)->
+      ev.preventDefault()
+      panel = $(this).parents(".accordion-body")[0]
+      prev = "#" + $(".accordion-body", $(panel).parents(".accordion-group").prev(".accordion-group")[0])[0].id
+      $(prev).collapse "show"
+      hook "onPrev", panel
+			
     # Get/set a plugin option.
     # Get usage: $('#el').acc-wizard('option', 'key');
     # Set usage: $('#el').acc-wizard('option', 'key', value);
@@ -265,6 +273,8 @@
     # Expose methods of Plugin we wish to be public.
     option: option
     destroy: destroy
+    go_next: go_next
+    go_prev: go_prev
 
   pluginName = "accwizard"
   # Build the plugin here
