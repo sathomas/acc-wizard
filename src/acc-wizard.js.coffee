@@ -222,6 +222,7 @@
     go_next = (ev)->
       ev.preventDefault()
       panel = $(this).parents(".accordion-body")[0]
+      return unless hook("beforeNext", panel)
       next = "#" + $(".accordion-body", $(panel).parents(".accordion-group").next(".accordion-group")[0])[0].id
       $(next).collapse "show"
       hook "onNext", panel
@@ -231,6 +232,7 @@
     go_prev = (ev)->
       ev.preventDefault()
       panel = $(this).parents(".accordion-body")[0]
+      return unless hook("beforeBack", panel)
       prev = "#" + $(".accordion-body", $(panel).parents(".accordion-group").prev(".accordion-group")[0])[0].id
       $(prev).collapse "show"
       hook "onPrev", panel
@@ -328,7 +330,9 @@
     backType: "reset"                            # HTML input type for back button
     nextClasses: "btn btn-primary"               # class(es) for next button
     backClasses: "btn"                           # class(es) for back button
+    beforeNext: -> true                          # hook before going to next step, e.g. used for validation
     onNext: -> true                              # function to call on next step
+    beforeBack: -> true                          # hook bofere going to previous step
     onBack: -> true                              # function to call on back up
     onInit: -> true                              # a chance to hook initialization
     onDestroy: -> true                           # a chance to hook destruction
