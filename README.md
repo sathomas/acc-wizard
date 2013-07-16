@@ -3,6 +3,8 @@ acc-wizard
 
 An accordion-based wizard based on Bootstrap styles.
 
+(For a CoffeeScript version, as well as many other improvements, check out Andrew Feng's [fork](https://github.com/mingliangfeng/acc-wizard).)
+
 This wizard is implemented as a jQuery plugin. Include the appropriate CSS and javascript files in your HTML, and then activate the wizard by calling it, e.g.
 
     $(window).load(function() {
