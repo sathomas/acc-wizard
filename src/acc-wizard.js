@@ -232,26 +232,32 @@
                     .click(function(ev) {
                         ev.preventDefault();
                         var panel = $(this).parents(".accordion-body")[0];
-                        var next = "#" + $(".accordion-body",
-                               $(panel).parents(".accordion-group")
-                               .next(".accordion-group")[0])[0].id;
-                        $(next).collapse("show");
-                        hook('onNext', panel);
+                        var resp = hook('beforeNext', panel);
+                        if(resp) {
+                            var next = "#" + $(".accordion-body",
+                                $(panel).parents(".accordion-group")
+                                    .next(".accordion-group")[0])[0].id;
+                            $(next).collapse("show");
+                            hook('onNext', panel);
+                        }
                     });
-            
+
                 // When the user clicks the "Back" button in
                 // any panel, retrurn to the previous panel.
-            
+
                 $("."+options.stepClass,$el)
                     .children("button[type='"+options.backType+"']")
                     .click(function(ev) {
                         ev.preventDefault();
                         var panel = $(this).parents(".accordion-body")[0];
-                        var prev = "#" + $(".accordion-body",
-                                       $(panel).parents(".accordion-group")
-                                       .prev(".accordion-group")[0])[0].id;
-                        $(prev).collapse("show");
-                        hook('onPrev', panel);
+                        var resp = hook('beforeBack', panel);
+                        if(resp) {
+                            var prev = "#" + $(".accordion-body",
+                                $(panel).parents(".accordion-group")
+                                    .prev(".accordion-group")[0])[0].id;
+                            $(prev).collapse("show");
+                            hook('onPrev', panel);
+                        }
                     });
             }
 
@@ -282,14 +288,14 @@
         // hookName: function() {}
         // Then somewhere in the plugin trigger the callback:
         // hook('hookName');
-				
+
         function hook(hookName) {
             if (options[hookName] !== undefined) {
                 // Call the user defined function.
                 // Scope is set to the jQuery element we are operating on.
                 var fn = options[hookName];
                 arguments[0] = el;
-                fn.apply(this, arguments);
+                return fn.apply(this, arguments);
             }
         }
 
