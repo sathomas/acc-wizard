@@ -9,5 +9,5 @@ ol.acc-wizard-sidebar li.acc-wizard-active{color:#0088cc;}ol.acc-wizard-sidebar 
 ol.acc-wizard-sidebar li.acc-wizard-active:before{background:#0088cc;}
 ol.acc-wizard-sidebar li:first-child{margin-top:0.75em;}
 .acc-wizard-step{margin-top:2em;}
-.accordion-heading{height:2.6em;position:relative;z-index:1;}
-.accordion-body{padding-top:2.6em;margin-top:-2.6em;}
+.panel-heading{height:2.6em;position:relative;z-index:1;}
+.panel-collapse{padding-top:2.6em;margin-top:-2.6em;}
