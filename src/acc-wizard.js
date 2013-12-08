@@ -166,7 +166,10 @@
             // the first panel that isn't complete is the active panel. If none
             // of the steps are marked as complete, then use the first step.
 
-            currentHash = window.location.hash ||
+            if (options.autoScrolling) {
+                currentHash = window.location.hash;
+            }
+            currentHash = currentHash ||
                           $(options.sidebar,$el)
                               .children("li."+options.todoClass+":first")
                               .children("a").attr("href") ||
@@ -175,7 +178,9 @@
                               .children("a").attr("href");
 
             // Sync up the window hash with our calculated value
-            window.location.hash = currentHash;
+            if (options.autoScrolling) {
+                window.location.hash = currentHash;
+            }
 
             // We also need to know the overall parent for the panels
             var parent = "#" + $(".accordion",$el)[0].id;
@@ -206,13 +211,15 @@
             // Next up are the events we need to hook. To continue
             // with the hash theme, here's our hook for hash
             // changes.
-            $(window).bind('hashchange', function() {
-                if (currentHash !== window.location.hash) {
-                    currentHash = window.location.hash;
-                    $(".accordion-body" + currentHash,$el).collapse("show");
-                    makeTaskActive(currentHash);
-                }
-            });
+            if (options.autoScrolling) {
+                $(window).bind('hashchange', function() {
+                    if (currentHash !== window.location.hash) {
+                        currentHash = window.location.hash;
+                        $(".accordion-body" + currentHash,$el).collapse("show");
+                        makeTaskActive(currentHash);
+                    }
+                });
+            }
 
             // Whenever a new accordion panel is shown, update
             // the vertical navigation task list to make
@@ -221,7 +228,9 @@
             $(".accordion-body",$el).on("shown", function () {
                 currentHash = "#" + this.id;
                 makeTaskActive(currentHash);
-                window.location.hash = currentHash;
+                if (options.autoScrolling) {
+                    window.location.hash = currentHash;
+                }
             });
 
             if (options.addButtons) {
@@ -372,6 +381,7 @@
         backType:       "reset",                // HTML input type for back button
         nextClasses:    "btn btn-primary",      // class(es) for next button
         backClasses:    "btn",                  // class(es) for back button
+        autoScrolling:  true,
         onNext:         function() {},          // function to call on next step
         onBack:         function() {},          // function to call on back up
         onInit:         function() {},          // a chance to hook initialization
