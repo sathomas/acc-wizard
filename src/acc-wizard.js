@@ -1,4 +1,3 @@
-
 /*!
  * jQuery plug-in to implement an accordion wizard based on bootstrap
  * Original author: @stephen_thomas
@@ -265,7 +264,7 @@
                                 $(panel).parents(".accordion-group")
                                     .prev(".accordion-group")[0])[0].id;
                             $(prev).collapse("show");
-                            hook('onPrev', panel);
+                            hook('onBack', panel);
                         }
                     });
             }
