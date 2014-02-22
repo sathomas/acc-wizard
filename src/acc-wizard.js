@@ -278,16 +278,14 @@
                         ev.preventDefault();
                         var panel = $(this).parents(".panel-collapse")[0];
                         hook('beforeBack', panel);
-                        if(resp) {
-                            var prev = "#" + $(".panel-collapse",
-                                $(panel).parents(".panel")
-                                    .prev(".panel")[0])[0].id;
-                            $(prev).collapse("show");
-                            hook('onPrev', panel);
-                            currentHash = prev;
-                            makeTaskActive(currentHash);
-                            window.location.hash = currentHash;
-                        }
+                        var prev = "#" + $(".panel-collapse",
+                            $(panel).parents(".panel")
+                                .prev(".panel")[0])[0].id;
+                        $(prev).collapse("show");
+                        hook('onBack', panel);
+                        currentHash = prev;
+                        makeTaskActive(currentHash);
+                        window.location.hash = currentHash;
                     });
             }
 
