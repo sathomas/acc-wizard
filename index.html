@@ -2,31 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Accordion Wizard for Bootstrap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accordion Wizard for Bootstrap 3</title>
 
-    <!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="css/acc-wizard.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Latest version of minified stylesheet for Accordion Wizard -->
+    <!-- <link rel="stylesheet" href="css/acc-wizard.min.css"> -->
+
+    <!-- Or, for development, load latest LESS file directly, and enable less.js below -->
+    <link rel="stylesheet/less" type="text/css" href="css/acc-wizard.less">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.6.3/less.min.js"></script>
   </head>
   <body>
 
-    <div class="row-fluid">
-      <p class="lead well">
+    <div class="row">
+      <div class="lead well" style="padding-top: 0.1em; padding-left: 2em; padding-right: 2em;">
+      <p>
+        <h2>Accordion Wizard for Bootstrap 3</h2>
         This page is both a demonstration of the accordion wizard and instructions for using it in your pages. Click the buttons and links to see the wizard in action, or view the source to see a complete implementation. Full details, including API documentation and full source code, are available on <a href="https://github.com/sathomas/acc-wizard">github</a>.
       </p>
+      </div>
     </div>
-    <div class="row-fluid acc-wizard">
-      <div class="span3" style="padding-left: 2em;">
+    <div class="row acc-wizard">
+      <div class="col-md-3" style="padding-left: 2em;">
         <p style="margin-bottom: 2em;">
           Follow the steps below to add an accordion wizard to your web page.
         </p>
@@ -37,21 +46,23 @@
           <li class="acc-wizard-todo"><a href="#viewpage">Release</a></li>
         </ol>
       </div>
-      <div class="span9">
-        <div class="accordion" id="accordion-demo">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#prerequisites">
-                Install Bootstrap and jQuery
-              </a>
+      <div class="col-md-9" style="padding-right: 2em;">
+        <div id="accordion-demo" class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a href="#prerequisites" data-parent="#accordion-demo" data-toggle="collapse">
+                  Install Bootstrap and jQuery
+                </a>
+              </h4>
             </div>
-            <div id="prerequisites" class="accordion-body collapse in">
-              <div class="accordion-inner">
+            <div id="prerequisites" class="panel-collapse collapse in">
+              <div class="panel-body">
                 <form id="form-prerequisites">
                   <p>
                     The accordion wizard depends on two other open source packages:
                     <ul>
-                      <li>The Bootstrap framework, available <a href="http://twitter.github.com/bootstrap/index.html">here</a>.
+                      <li>The Bootstrap framework, available <a href="http://getbootstrap.com">here</a>.
                       <li>The jQuery javascript library, available <a href="http://jquery.com">here</a>.
                     </ul>
                     Note that Bootstrap itself depends on jQuery for its interactive
@@ -63,30 +74,31 @@
                     <code>&lt;head&gt;</code> of your HTML file, for example:
                   </p>
                   <pre><!--
-                  -->&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
-<!--              -->&lt;link href="css/bootstrap-responsive.min.css" rel="stylesheet"&gt;<!--
+                  -->&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;<!--
                   --></pre>
                   <p>
                     and you'll include jQuery and Bootstrap javascript files at the
                     end of your <code>&lt;body&gt;</code> section, for example:
                   </p>
                   <pre><!--
-                  -->&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
+                  -->&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
 <!--              -->&lt;script src="js/bootstrap.min.js"&gt;&lt;/script&gt;<!--
                   --></pre>
                 </form>
-              </div> <!--/.accordion-inner -->
+              </div> <!--/.panel-body -->
             </div> <!-- /#prerequisites -->
-          </div> <!-- /.accordion-group -->
-          
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#addwizard">
-                Add Accordion Wizard
-              </a>
+          </div> <!-- /.panel.panel-default -->
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a href="#addwizard" data-parent="#accordion-demo" data-toggle="collapse">
+                  Add Accordion Wizard
+                </a>
+              </h4>
             </div>
-            <div id="addwizard" class="accordion-body collapse in">
-              <div class="accordion-inner">
+            <div id="addwizard" class="panel-collapse collapse in">
+              <div class="panel-body">
                 <form id="form-addwizard">
                   <p>
                     If you haven't already found it, the source code for the
@@ -103,14 +115,13 @@
                   </p>
                   <pre><!--
                   -->&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
-<!--              -->&lt;link href="css/bootstrap-responsive.min.css" rel="stylesheet"&gt;
 <!--              -->&lt;link href="css/acc-wizard.min.css" rel="stylesheet"&gt;<!--
                   --></pre>
                   <p>
                     and
                   </p>
                   <pre><!--
-                  -->&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
+                  -->&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
 <!--              -->&lt;script src="js/bootstrap.min.js"&gt;&lt;/script&gt;
 <!--              -->&lt;script src="js/acc-wizard.min.js"&gt;&lt;/script&gt;<!--
                   --></pre>
@@ -129,30 +140,32 @@
                     depends on variables defined in Bootstrap's <code>variables.less</code>
                     file.
                 </form>
-              </div> <!--/.accordion-inner -->
+              </div> <!--/.panel-body -->
             </div> <!-- /#addwizard -->
-          </div> <!-- /.accordion-group -->
+          </div> <!-- /.panel.panel-default -->
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#adjusthtml">
-                Adjust Your HTML Markup
-              </a>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a href="#adjusthtml" data-parent="#accordion-demo" data-toggle="collapse">
+                  Adjust Your HTML Markup
+                </a>
+              </h4>
             </div>
-            <div id="adjusthtml" class="accordion-body collapse in">
-              <div class="accordion-inner">
+            <div id="adjusthtml" class="panel-collapse collapse in">
+              <div class="panel-body">
                 <form id="form-adjusthtml">
                   <p>
                     Now you can modify your HTML markup to activate the accordion
                     wizard. There are two parts to the markup&mdash;the collapsible
                     accordion itself and the task list. I prefer putting both in
                     the same <code>.row</code> with the task list taking up a
-                    <code>.span3</code> and the accordion panels in a <code>.span9</code>,
+                    <code>.col-md-3</code> and the accordion panels in a <code>.col-md-9</code>,
                     but that's not a requirement.
                   </p>
                   <p>
                     The accordion panel can be exactly as documented in the
-                    <a href="http://twitter.github.com/bootstrap/javascript.html#collapse">Bootstrap example</a>,
+                    <a href="http://getbootstrap.com/javascript/#collapse-examples">Bootstrap example</a>,
                     but I think there's a problem with the Bootstrap implementation.
                     Specifically, the Bootstrap example only adds the class
                     <code>.in</code> to one of the accordion panels. That class
@@ -203,19 +216,21 @@
                     for the details.
                   </p>
                 </form>
-              </div> <!--/.accordion-inner -->
+              </div> <!--/.panel-body -->
             </div> <!-- /#adjusthtml -->
-          </div> <!-- /.accordion-group -->
+          </div> <!-- /.panel.panel-default -->
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#viewpage">
-                Test Your Page
-              </a>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a href="#viewpage" data-parent="#accordion-demo" data-toggle="collapse">
+                  Test Your Page
+                </a>
+              </h4>
             </div>
-            <div id="viewpage" class="accordion-body collapse in">
-              <div class="accordion-inner">
-                <form id="viewpage">
+            <div id="viewpage" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <form id="form-viewpage">
                   <p>
                     Naturally, the last thing you'll want to do is test your
                     page with the accordion wizard. Once you've confirmed that
@@ -224,21 +239,31 @@
                     it gives to multi-step and complex tasks on your web site.
                   </p>
                 </form>
-              </div> <!--/.accordion-inner -->
-            </div> <!-- /#viewpage -->
-          </div> <!-- /.accordion-group -->
+              </div> <!--/.panel-body -->
+            </div> <!-- /#adjusthtml -->
+          </div> <!-- /.panel.panel-default -->
           
         </div>
       </div>
     </div>
 
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/acc-wizard.min.js"></script>
+    <!-- ===================================================================== -->
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <!-- ===================================================================== -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <!-- Latest version of minified js for Accordion Wizard -->
+    <!-- <script src="js/acc-wizard.min.js"></script> -->
+
+    <!-- Or, for development, use latest version of Accordion Wizard -->
+    <script src="js/acc-wizard.js"></script>
+
     <script>
       function onNext(parent, panel) {
         hash = "#" + panel.id;
