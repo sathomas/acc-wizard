@@ -6,11 +6,12 @@
     "Stephen A Thomas <stephen@sathomas.me>",
     "Marc Siegel <marc@usainnov.com>"
   ],
-  "description": "An accordion-based wizard based on Bootstrap styles.",
+  "description": "An accordion-based wizard based on Bootstrap 3 styles",
   "keywords": ["wizard", "accordion", "bootstrap"],
   "main": [
-    "./release/acc-wizard.min.css",
-    "./release/acc-wizard.min.js"],
+    "./src/acc-wizard.js",
+    "./src/acc-wizard.css"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -22,6 +23,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "3.0.0"
+    "bootstrap": ">=3.0.0"
   }
 }
