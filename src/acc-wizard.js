@@ -259,7 +259,7 @@
                     .click(function(ev) {
                         ev.preventDefault();
                         var panel = $(this).parents(".panel-collapse")[0];
-                        if(hook('beforeNext', panel)===false) return;
+                        if(hook('beforeNext', panel)===false) return false;
                         var next = "#" + $(".panel-collapse",
                             $(panel).parents(".panel")
                                 .next(".panel")[0])[0].id;
