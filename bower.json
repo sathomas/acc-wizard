@@ -1,0 +1,28 @@
+{
+  "name": "acc-wizard",
+  "version": "0.9.0",
+  "homepage": "https://github.com/sathomas/acc-wizard",
+  "authors": [
+    "Stephen A Thomas <stephen@sathomas.me>",
+    "Marc Siegel <marc@usainnov.com>"
+  ],
+  "description": "An accordion-based wizard based on Bootstrap 3 styles",
+  "keywords": ["wizard", "accordion", "bootstrap"],
+  "main": [
+    "./src/acc-wizard.js",
+    "./src/acc-wizard.css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.md",
+    "*.json",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": ">=3.0.0"
+  }
+}
